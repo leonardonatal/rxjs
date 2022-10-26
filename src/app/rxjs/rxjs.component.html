@@ -1,0 +1,87 @@
+
+<ng-content></ng-content>
+<mat-tab-group>
+  <mat-tab label="Hot vs Cold">
+    <h1 fxLayout="row" fxLayoutAlign="center center">Hot vs Cold Observables</h1>
+<div  fxLayout="row" fxLayoutAlign="space-around center" >
+  <div>
+    <h2>Cold</h2>
+    <h3>Unicast from Api</h3>
+    <div>Count: {{ (coldList$ | async)?.length }}</div>
+    <ul>
+      <li *ngFor="let clist of coldList$ | async | slice:0:5">{{ clist.title }}</li>
+    </ul>
+
+    <div>
+      <h3>cold from ts</h3>
+      <div>Date in ms: {{ coldVar1 }}</div>
+      <div>After 2s emitted value: {{ coldVar2 }}</div>
+    </div>
+  </div>
+
+  <div>
+    <h2>Hot</h2>
+    <h3>Multicast from Api</h3>
+    <div>Count: {{ (hotList$ | async)?.length }}</div>
+    <ul>
+      <li *ngFor="let hotList of hotList$ | async | slice:0:5">{{ hotList.title }}</li>
+    </ul>
+
+    <div>
+      <h3>hot from ts</h3>
+      <div>Date in ms: {{ hotVar1 }}</div>
+      <div>After 2s emitted value: {{ hotVar2 }}</div>
+    </div>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="space-around center">
+    <div>
+      <h3>Subject subscriber</h3>
+      <div>{{ subj1 }}</div>
+    </div>
+
+    <div>
+      <h3>Subject subscriber</h3>
+      <div>{{ subj2 }}</div>
+    </div>
+  </div>
+  </mat-tab>
+  <mat-tab label="MergeMap Switchmap">
+    <div fxLayout="row" fxLayoutAlign="space-around start">
+      <div>
+        <h3>MergeMap</h3>
+        <mat-nav-list *ngFor="let dog of mergeMapDogs">
+          <mat-list-item *ngFor="let msg of dog.message">
+            <p>{{ msg }}</p>
+          </mat-list-item>
+        </mat-nav-list>
+
+      </div>
+
+      <div>
+        <h3>SwitchMap</h3>
+        <mat-nav-list *ngFor="let dog of switchMapDogs">
+          <mat-list-item *ngFor="let msg of dog.message">
+            <p>{{ msg }}</p>
+          </mat-list-item>
+        </mat-nav-list>
+
+      </div>
+    </div>
+
+
+  </mat-tab>
+  <mat-tab label="Exhaust Concat">
+    <p>coming soon</p>
+  </mat-tab>
+  <mat-tab label="Abstract class">
+    <mat-form-field class="example-full-width" appearance="outline" fxLayout="row" fxLayoutAlign="center center">
+      <mat-label>leave a message</mat-label>
+      <input matInput placeholder="any messsage" value="test"  #msg>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="center center" >
+      <button mat-raised-button class="btn" (click)="toastMessage(msg.value)">Toast success</button>
+    </div>
+  </mat-tab>
+</mat-tab-group>
