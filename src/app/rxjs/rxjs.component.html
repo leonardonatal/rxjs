@@ -72,8 +72,28 @@
 
 
   </mat-tab>
-  <mat-tab label="Exhaust Concat">
-    <p>coming soon</p>
+  <mat-tab label="ExhaustMap ConcatMap">
+    <div fxLayout="row" fxLayoutAlign="space-around start">
+      <div>
+        <h3>ExhaustMap</h3>
+        <mat-nav-list *ngFor="let dog of exhaustMapDogs">
+          <mat-list-item *ngFor="let msg of dog.message">
+            <p>{{ msg }}</p>
+          </mat-list-item>
+        </mat-nav-list>
+
+      </div>
+
+      <div>
+        <h3>ConcatMap</h3>
+        <mat-nav-list *ngFor="let dog of concatMapDogs">
+          <mat-list-item *ngFor="let msg of dog.message">
+            <p>{{ msg }}</p>
+          </mat-list-item>
+        </mat-nav-list>
+
+      </div>
+    </div>
   </mat-tab>
   <mat-tab label="Abstract class">
     <mat-form-field class="example-full-width" appearance="outline" fxLayout="row" fxLayoutAlign="center center">

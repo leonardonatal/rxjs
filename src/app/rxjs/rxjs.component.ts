@@ -47,6 +47,8 @@ export class RxjsComponent extends SnackbarAbstractClass implements OnInit {
   hotList$!: Observable<List[]>;
   mergeMapDogs: Dogs[] = [];
   switchMapDogs: Dogs[] = [];
+  exhaustMapDogs: Dogs[] = [];
+  concatMapDogs: Dogs[] = [];
   coldVar1!: number;
   coldVar2!: number;
   hotVar1!: number;
@@ -69,6 +71,8 @@ export class RxjsComponent extends SnackbarAbstractClass implements OnInit {
     this.subscribeToSubject();
     this.mergingMap();
     this.switchingMap();
+    this.exhaustingMap();
+    this.concatMap();
   }
 
   public subscribeToCold() {
@@ -127,9 +131,20 @@ export class RxjsComponent extends SnackbarAbstractClass implements OnInit {
     })
   }
 
+  public exhaustingMap() {
+    this.rxjs.getexhaustMapDogs().subscribe((dogs) => {
+      this.exhaustMapDogs.push(dogs);
+    })
+  }
+
+  public concatMap() {
+    this.rxjs.concatMapDogs().subscribe((dogs) => {
+      this.concatMapDogs.push(dogs);
+    })
+  }
+
   public toastMessage(msg: string) {
     this.toast(msg);
   }
 
 }
-
